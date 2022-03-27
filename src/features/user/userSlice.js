@@ -22,6 +22,7 @@ export const logout = createAsyncThunk("user/logout",async ()=>{
     return res.data
 })
 
+//asyncthunk con promesas
 // export const validate = createAsyncThunk("user/validate",(params,thunkAPI)=>{
 //     return axios.post("https://backendtzuzulcode.wl.r.appspot.com/auth/validate",{
 //       method:"POST",

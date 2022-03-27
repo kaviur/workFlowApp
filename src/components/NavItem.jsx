@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function NavItem({title,to}) {
     return (
-        <li className='text-lavender-900 hover:text-white m-0 ml-3 cursor-pointer'>
+        <li className='text-white hover:text-acapulco-900 m-0 ml-3 height-auto cursor-pointer'>
             <Link to={to}>{title}</Link>
         </li>
     )

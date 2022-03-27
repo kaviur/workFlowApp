@@ -18,10 +18,10 @@ export default function Navbar() {
         }
 
     return (
-        <nav className="bg-lavender-300 py-3">
+        <nav className="bg-acapulco-500 py-3 text-white">
             <div className='max-w-screen-xl mx-auto flex justify-between relative'>
             <Link to="/"><p className='ml-2 md:ml-0'>WorkFlowApp</p></Link>
-            <ul className={`${open?"block":"hidden"} bg-lavender-500 md:bg-transparent text-right md:flex absolute right-0 top-7 md:static p-2 pl-10 md:p-0 md space-y-2 md:space-y-0`}>
+            <ul className={`${open?"block":"hidden"} md:bg-transparent text-right md:flex absolute right-0 top-7 md:static p-2 pl-10 md:p-0 md space-y-2 md:space-y-0`}>
                 <NavItem to="/" title={"Link"}/>
                 <NavItem to="/" title={"Link"}/>
                 <NavItem to="/" title={"Link"}/>
