@@ -4,7 +4,7 @@ import NavItem from './NavItem';
 
 export default function Footer() {
     return  (
-        <footer className="w-full px-5 pt-10 border-t-2 border-slate-300 dark:border-neutral-300 bg-neutral-100 dark:bg-neutral-800 text-stone-900 dark:text-stone-50">
+        <footer className="w-full px-5 pt-10 border-t-2 border-slate-300 dark:border-neutral-300 bg-rwr-red-50 dark:bg-neutral-800 text-stone-900 dark:text-stone-50">
         <section className="flex flex-row pb-10 justify-evenly align-start">
             <div className="flex flex-col p-2">
             <p className="inline text-base">CONTACTO</p>
