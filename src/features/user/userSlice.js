@@ -2,18 +2,20 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import { post } from '../../api'
 
 
-export const login = createAsyncThunk("user/login",async (credentials,thunkAPI)=>{
-    const response = await post("/auth/login",{
-        email:credentials.email,
-        password:credentials.password
+export const login = createAsyncThunk("user/login", async (credentials, thunkAPI) => {
+    const response = await post("/auth/login", {
+        email: credentials.email,
+        password: credentials.password
     })
-
+    console.log('login response', response.data)
     //action.payload del reducer (fullfilled)
     return response.data
 })
 
-export const validate = createAsyncThunk("user/validate",async (params,thunkAPI)=>{
+
+export const validate = createAsyncThunk("user/validate", async (credentials, thunkAPI) => {
     const response = await post("/auth/validate")
+    console.log('se validó...', response.data)
     return response.data
 })
 
