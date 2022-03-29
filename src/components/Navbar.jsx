@@ -8,7 +8,7 @@ import {FiMenu,FiXCircle} from 'react-icons/fi'
 
 export default function Navbar() {
 
-    const {logged} = useSelector(state=>state.user)
+    const {logged,name} = useSelector(state=>state.user)
     const dispatch = useDispatch()
 
     const [open,setOpen] = useState(true)
@@ -30,7 +30,7 @@ export default function Navbar() {
                 <NavItem to="/drag_and_drop2" title={"DnD2"}/>
                 {logged&&<NavItem to="/my_teams" title={"My teams"}/>}
 
-                {logged?<li className="ml-2" onClick={signOut}>Cerrar sesión</li>:<NavItem to="/login" title={"Iniciar sesión"}/>}
+                {logged?<li className="ml-2" onClick={signOut}> {name}-Cerrar sesión</li>:<NavItem to="/login" title={"Iniciar sesión"}/>}
             </ul>
             <button onClick={()=>{setOpen(!open)}} className='block md:hidden mr-2 md:mr-0'>{open?<FiXCircle className='h-5 w-5'/>:<FiMenu className='h-5 w-5'/>}</button>
             </div>

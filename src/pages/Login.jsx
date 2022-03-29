@@ -2,9 +2,10 @@ import React from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import {login,logout} from '../features/user/userSlice'
 import {FcGoogle} from 'react-icons/fc'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { URL } from '../config'
+
 
 export default function Login() {
     // ¿Quiero consultar el estado global?
@@ -56,6 +57,7 @@ export default function Login() {
                 </a>
                 {/* <button onClick={()=>{dispatch(login("Tzuzul"))}}>Iniciar sesión</button> */}
                 {/* <button onClick={()=>{dispatch(logout())}}>Cerrar sesión</button> */}
+                <Link to="/signup">Registrarse</Link>
             </main>
         </div>
     )

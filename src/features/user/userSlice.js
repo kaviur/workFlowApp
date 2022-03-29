@@ -24,6 +24,18 @@ export const logout = createAsyncThunk("user/logout",async ()=>{
     return res.data
 })
 
+export const signup = createAsyncThunk("user/signup", async (credentials, thunkAPI) => {
+    const response = await post("/auth/signup", {
+        name: credentials.name,
+        birthday: credentials.birthday,
+        city: credentials.city,
+        email: credentials.email,
+        password: credentials.password
+    })
+    console.log('registro...', response.data)
+    return response.data
+})
+
 //asyncthunk con promesas
 // export const validate = createAsyncThunk("user/validate",(params,thunkAPI)=>{
 //     return axios.post("https://backendtzuzulcode.wl.r.appspot.com/auth/validate",{
@@ -46,7 +58,31 @@ const userSlice = createSlice({
         message:""
     },
     // Thunks
+    
     extraReducers(builder){
+
+        //_______sign up____________________________________________
+        builder.addCase(signup.pending,(state,action)=>{
+            state.loading = true
+            state.error = false
+            state.message = ""
+            state.name = ""
+        })
+
+        builder.addCase(signup.fulfilled,(state,action)=>{
+            state.loading = false
+            state.logged = true
+            state.error = false
+            state.name = action.payload.name
+        })
+
+        builder.addCase(signup.rejected,(state,action)=>{
+            state.loading = false
+            state.error = true
+            state.message = action.error.message
+        })
+
+        //_______login__________________________________________________
         builder.addCase(login.pending,(state,action)=>{
             state.loading = true
             state.error = false
@@ -67,13 +103,14 @@ const userSlice = createSlice({
             state.message = action.payload.message
         })
 
+        //______validation login______________________________________________
         builder.addCase(validate.pending,(state,action)=>{
             state.loading = true
         })
 
         builder.addCase(validate.fulfilled,(state,action)=>{
             state.logged = true
-            state.name = action.payload?.user?.firstName
+            state.name = action.payload?.user?.name
             state.error = false
             state.loading = false
         })
@@ -83,6 +120,7 @@ const userSlice = createSlice({
             state.loading = false
         })
 
+        //_______logout__________________________________________________
         builder.addCase(logout.pending,(state,action)=>{
             state.loading = true
         })

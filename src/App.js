@@ -10,6 +10,7 @@ import MyTeams from './pages/MyTeams';
 import DragAndDrop from './pages/DragAndDrop';
 import DragAndDrop2 from './pages/DragAndDrop2';
 import Team from './pages/Team';
+import SignUp from './pages/Signup';
 
 function App() {
   
@@ -27,6 +28,7 @@ function App() {
             {/* <Route path="*" element={<NotFound/>}/> */}
             <Route path="/" element={<Home/>}/>
             <Route path="/login" element={<Login/>}/>
+            <Route path="/signup" element={<SignUp/>}/>
             <Route path="/my_teams" element={<MyTeams/>}/>
             <Route path="/my_teams/:idTeam" element={<Team/>}/>
             <Route path="/drag_and_drop" element={<DragAndDrop/>}/>
