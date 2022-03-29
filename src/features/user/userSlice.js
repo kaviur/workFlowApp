@@ -15,7 +15,7 @@ export const login = createAsyncThunk("user/login", async (credentials, thunkAPI
 
 export const validate = createAsyncThunk("user/validate", async (credentials, thunkAPI) => {
     const response = await post("/auth/validate")
-    console.log('se validó...', response.data)
+    //console.log('se validó...', response.data)
     return response.data
 })
 

@@ -10,36 +10,26 @@ import { del, get, post, postFile, put } from '../../api'
 //     })
 // })
 
-export const createTeam = createAsyncThunk('/teams', ({ projectId, data }, thunkAPI) => {
+//crear un equipo
+export const createTeam = createAsyncThunk('team/createTeam', ({data}, thunkAPI) => {
   const formData = new FormData()
   formData.append('name', data.name)
-  formData.append('idLeader', data.idLeader)
-  formData.append('logo', data.logo[0], data.logo[0].name)
-  return postFile(`/teams/${projectId}`, formData)
+  formData.append('description', data.description)
+  formData.append('img', data.img)
+  //formData.append('img', data.logo[0], data.logo[0].name)
+
+  return post("/teams", formData)
     .then(res => {
-      if (res.fail) return thunkAPI.rejectWithValue(res.err)
-      else return res.data
+      console.log(res.data)
+      return res.data
     })
 })
-
-// export const signup = createAsyncThunk("teams/create", async (credentials, thunkAPI) => {
-//     const response = await post("/auth/signup", {
-//         name: credentials.name,
-//         birthday: credentials.birthday,
-//         city: credentials.city,
-//         email: credentials.email,
-//         password: credentials.password
-//     })
-//     console.log('registro...', response.data)
-//     return response.data
-// })
-
 
 export const getTeamById = createAsyncThunk('team/getTeamById', (id, thunkAPI) => {
   return get(`/teams/${id}`)
     .then(res => {
-      if (res.fail) return thunkAPI.rejectWithValue(res.err)
-      else return res.data
+      console.log(res.data);
+      return res.data
     })
 })
 
@@ -71,20 +61,21 @@ export const expelFromTeam = createAsyncThunk('team/expelFromTeam', ({ teamId, u
 })
 
 const teamSlice = createSlice({
-  name: 'user',
+  name: 'team',
   initialState: {
     exists: false,
     loading: true,
     error: false,
     message: undefined,
-
-    id: undefined,
-    name: undefined,
-    logoUrl: undefined,
-    idProject: undefined,
-    idLeader: undefined,
-    members: [],
-    tasks: {}
+    data:{}
+    // id: undefined,
+    // idLeader: undefined,
+    // name: undefined,
+    // description: undefined,
+    // members: [],
+    // lists:[],
+    // logoUrl: undefined,
+    // tasks: {}
   },
   reducers: {
     clearTeamMessage (state, action) {
@@ -98,12 +89,13 @@ const teamSlice = createSlice({
       state.message = undefined
 
       state.id = undefined
-      state.name = undefined
-      state.idProject = undefined
       state.idLeader = undefined
-      state.logoUrl = undefined
+      state.name = undefined
+      state.description = undefined
       state.members = []
-      state.tasks = []
+      state.lists =[]
+      state.logoUrl = undefined
+      state.tasks = {}
     }
   },
   extraReducers: (builder) => {
@@ -113,6 +105,7 @@ const teamSlice = createSlice({
     builder.addCase(createTeam.fulfilled, (state, { payload }) => {
       state.loading = false
       state.exists = true
+      state.data = payload
     })
     builder.addCase(createTeam.rejected, (state, { payload }) => {
       state.loading = false
@@ -129,14 +122,15 @@ const teamSlice = createSlice({
     builder.addCase(getTeamById.fulfilled, (state, { payload }) => {
       state.loading = false
       state.exists = true
+      state.data = payload
 
-      state.id = payload._id
-      state.name = payload.name
-      state.idProject = payload.idProject
-      state.idLeader = payload.idLeader
-      state.members = payload.members
-      state.tasks = payload.tasks
-      state.logoUrl = payload.logoUrl
+      // state.id = payload._id
+      // state.name = payload.name
+      // state.idProject = payload.idProject
+      // state.idLeader = payload.idLeader
+      // state.members = payload.members
+      // state.tasks = payload.tasks
+      // state.logoUrl = payload.logoUrl
     })
     builder.addCase(getTeamById.rejected, (state, { payload }) => {
       state.loading = false
