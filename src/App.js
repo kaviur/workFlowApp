@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -20,10 +20,15 @@ function App() {
     dispatch(validate()); 
   },[]);
 
+  const img = useSelector(state => state.team.data.img)
+
   return (   
       <BrowserRouter>
         <Navbar/>
-        <div className='max-w-screen-xl mx-auto'>
+          <div 
+          className="h-screen bg-no-repeat bg-cover bg-top"
+          style={{backgroundImage:`url('${img}')`}}
+          >
           <Routes>
             {/* <Route path="*" element={<NotFound/>}/> */}
             <Route path="/" element={<Home/>}/>

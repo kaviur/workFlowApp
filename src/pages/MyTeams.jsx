@@ -23,8 +23,8 @@ export default function MyTeams() {
         dispatch(createTeam({ data: { name, img, description } }))
           .then(res => {
             if (res.meta.requestStatus === 'fulfilled') return navigate(0)
-          })
-      }
+        })
+    }
 
     // const addTeam = (event) =>{
     //     event.preventDefault()
