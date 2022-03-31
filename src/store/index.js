@@ -1,12 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit'
 import userReducer from '../features/user/userSlice'
 import teamReducer from '../features/team/teamSlice'
+import taskReducer from '../features/task/taskSlice'
 
 const store = configureStore({
     reducer:{
-        //TODO:Agregar reducers
         user:userReducer,
-        team: teamReducer,
+        team:teamReducer,
+        task:taskReducer
     }
 })
 
